@@ -22,6 +22,7 @@ EditLevelArea::EditLevelArea(QPixmap tileset, QWidget *parent)
     connect(_wEditLvl, SIGNAL(viewStartChanged(QPoint)), this, SLOT(updateScrollBarsPos(QPoint)));
 }
 
+
 void EditLevelArea::resetLvl() {
     horizontalScrollBar()->setRange(0, 0);
     verticalScrollBar()->setRange(0, 0);

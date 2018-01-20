@@ -8,6 +8,7 @@ TilesetWidget::TilesetWidget(const QPixmap &tileset, QWidget *parent) : QWidget(
     emit usedTileChanged(0);
 }
 
+
 void TilesetWidget::setTileset(const QPixmap &tileset) {
     _tileset = tileset;
     _viewStartY = 0;

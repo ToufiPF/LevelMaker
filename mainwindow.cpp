@@ -63,6 +63,7 @@ MainWindow::~MainWindow()
 
 }
 
+
 void MainWindow::initMenusActions() {
     _menuFiles = menuBar()->addMenu(tr("&Fichier"));
         _actNewLvl = new QAction(tr("&Nouveau"), this);

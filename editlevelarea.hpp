@@ -58,4 +58,5 @@ protected:
 
 };
 
+
 #endif // EDITLVLAREA_HPP

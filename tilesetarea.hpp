@@ -40,4 +40,5 @@ protected:
     QVBoxLayout *_layViewport;
 };
 
+
 #endif // TILESETAREA_HPP

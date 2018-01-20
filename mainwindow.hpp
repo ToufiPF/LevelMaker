@@ -42,6 +42,7 @@
 #include "tilesetarea.hpp"
 #include "collisionwidget.hpp"
 
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

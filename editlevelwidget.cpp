@@ -11,6 +11,7 @@ EditLevelWidget::EditLevelWidget(const QPixmap &tileset, QWidget *parent) : QWid
     resetLvl();
 }
 
+
 QPoint EditLevelWidget::getViewStart() const { return _viewStart; }
 QPoint EditLevelWidget::getNbTiles() const { return _nbTiles; }
 

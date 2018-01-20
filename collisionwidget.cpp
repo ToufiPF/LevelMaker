@@ -130,4 +130,3 @@ void CollisionWidget::mouseMoveEvent(QMouseEvent *e) {
     QTableWidget::mouseMoveEvent(e);
     e->accept();
 }
-

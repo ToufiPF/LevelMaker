@@ -23,6 +23,7 @@ TilesetArea::TilesetArea(QPixmap tileset, QWidget *parent)
     connect(_wTileset, SIGNAL(viewStartYChanged(int)), verticalScrollBar(), SLOT(setValue(int)));
 }
 
+
 void TilesetArea::setTileset(QPixmap tileset) {
     _wTileset->setTileset(tileset);
     updateScrollBarRange();

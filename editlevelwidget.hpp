@@ -112,4 +112,5 @@ protected:
     QList<QList<quint32> > _mapCollisions;
 };
 
+
 #endif // EDITLEVELWIDGET_HPP
