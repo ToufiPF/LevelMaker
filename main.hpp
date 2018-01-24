@@ -16,7 +16,7 @@ const QString ORGARNISATION_NAME("PouetForce");
 const QString APPLICATION_NAME("LevelMaker");
 const int TILE_SIZE = 32;
 const int TILESET_WIDTH_IN_TILES = 10;
-const int TILESET_WIDTH_IN_PIXEL = 10 * TILE_SIZE;
+const int TILESET_WIDTH_IN_PIXEL = TILESET_WIDTH_IN_TILES * TILE_SIZE;
 
 namespace EditModes {
     enum EditModes

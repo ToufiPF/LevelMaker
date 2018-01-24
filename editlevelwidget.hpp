@@ -58,6 +58,11 @@ public slots:
     void updateUsedTile(int tile);
     void updateUsedCollision(int collision);
 
+    void insertRow();
+    void insertColumn();
+    void removeRows();
+    void removeColumns();
+
     void toggleIsSelecting(bool isSelecting);
     void toggleDisplayGrid(bool displayGrid);
 
@@ -87,11 +92,15 @@ protected:
     void keyPressEvent(QKeyEvent *e);
     void keyReleaseEvent(QKeyEvent *e);
 
+    void selectionRectToTiles(QRect const& selectionNormalized);
+
 protected:
     int _usedTile, _usedCollision;
 
     bool _isSelecting;
     QRect _selectionRect;
+    QList<QPoint> _selectedTiles;
+
     bool _mustDisplayGrid;
 
     bool _isLeftButtonClicked, _isMiddleButtonClicked;

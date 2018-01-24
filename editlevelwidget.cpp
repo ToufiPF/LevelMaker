@@ -121,11 +121,48 @@ void EditLevelWidget::loadLvl(QTextStream &iStream) {
 void EditLevelWidget::updateUsedTile(int tile) { _usedTile = tile; }
 void EditLevelWidget::updateUsedCollision(int collision) { _usedCollision = collision; }
 
+void EditLevelWidget::insertRow() {
+
+    // On verifie si au moins une tile est selectionnee
+    if (_selectedTiles.size() == 0)
+        return;
+
+    // On verifie si on a selectionne plus d'une ligne
+    int lastY = _selectedTiles.at(0).y();
+    for (int i = 1 ; i < _selectedTiles.size() ; i++) {
+        if (lastY != _selectedTiles.at(i).y())
+            return;
+    }
+
+    // On ajoute une ligne dans chaque qlist
+}
+void EditLevelWidget::insertColumn(){
+
+}
+void EditLevelWidget::removeRows(){
+
+}
+void EditLevelWidget::removeColumns(){
+
+}
+
 void EditLevelWidget::toggleIsSelecting(bool isSelecting) {
     _isSelecting = isSelecting;
     if (!_isSelecting)
         _selectionRect.setRect(0, 0, 0, 0);
     repaint();
+}
+void EditLevelWidget::selectionRectToTiles(const QRect &selectionNormalized) {
+
+    _selectedTiles.clear();
+    for (int x = selectionNormalized.left() / TILE_SIZE ;
+         x < selectionNormalized.right() / TILE_SIZE + 1 ; x++) {
+
+        for (int y = selectionNormalized.top() / TILE_SIZE ;
+             y < selectionNormalized.bottom() / TILE_SIZE + 1 ; y++) {
+            _selectedTiles.append(QPoint(x, y));
+        }
+    }
 }
 void EditLevelWidget::toggleDisplayGrid(bool displayGrid) { _mustDisplayGrid = displayGrid; repaint(); }
 
@@ -311,7 +348,16 @@ void EditLevelWidget::paintEvent(QPaintEvent *e) {
     }
 
     if (_isSelecting) {
-        qDebug() << _selectionRect;
+        painter.setOpacity(0.4);
+        for (int i = 0 ; i < _selectedTiles.size() ; i++) {
+            painter.fillRect(_selectedTiles.at(i).x() * TILE_SIZE - _viewStart.x(),
+                             _selectedTiles.at(i).y() * TILE_SIZE - _viewStart.y(),
+                             TILE_SIZE, TILE_SIZE, QColor(80, 80, 230));
+        }
+        //painter.setOpacity(0.7);
+        //painter.setPen(QColor(40, 40, 230));
+        //painter.drawRect();
+
         if (_isLeftButtonClicked) {
             painter.setOpacity(0.4);
             painter.fillRect(_selectionRect, QColor(100, 100, 240));
@@ -371,6 +417,8 @@ void EditLevelWidget::mousePressEvent(QMouseEvent *e) {
         if (_isSelecting) {
             _selectionRect.setTopLeft(e->pos());
             _selectionRect.setSize(QSize(0, 0));
+
+            selectionRectToTiles(_selectionRect.normalized());
         }
         else {
             if (_editMode == EditModes::Tiles) {
@@ -436,6 +484,7 @@ void EditLevelWidget::mouseMoveEvent(QMouseEvent *e) {
             return;
         if (_isSelecting) {
             _selectionRect.setBottomRight(e->pos());
+            selectionRectToTiles(_selectionRect.normalized());
         }
         else {
 
